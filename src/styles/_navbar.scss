@@ -1,0 +1,22 @@
+nav.navbar {
+    display: flex;
+    justify-content: space-between;
+    background-color: #fff;
+    border-bottom: 1px solid #e5e5e5;
+    box-shadow: 0 1px 0 rgba(0, 0, 0, 0.05);
+    padding: 20px 15px;
+
+    .navbar-brand {
+        font-size: 1.5rem;
+        font-weight: bold;
+        color: #000;
+        text-decoration: none;
+        margin-left: 20px;
+    }
+
+    .right {
+        svg {
+            margin-right: 20px;
+        }
+    }
+}
