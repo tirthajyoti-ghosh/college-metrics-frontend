@@ -1,17 +1,15 @@
-import React, { useState } from 'react';
-import ReactTooltip from 'react-tooltip';
+import Navbar from './components/Navbar';
+import Charts from './containers/Charts';
+import Table from './containers/Table';
 
-import DonutChart from './components/DonutChart';
-import MapChart from './components/MapChart';
+import './styles/main.scss';
 
 function App() {
-    const [content, setContent] = useState('');
-
     return (
         <div className="App">
-            <DonutChart />
-            <MapChart setTooltipContent={setContent} />
-            <ReactTooltip>{content}</ReactTooltip>
+            <Navbar />
+            <Charts />
+            <Table type="colleges" />
         </div>
     );
 }
