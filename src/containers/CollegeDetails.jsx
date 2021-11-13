@@ -26,8 +26,12 @@ const CollegeDetails = ({
                 responses.college = response.data;
             })(),
             (async () => {
-                const response = await axios.get(`${process.env.REACT_APP_API_BASE_URL}/colleges/${selectedCollegeId}/similar`);
-                responses.similarColleges = response.data;
+                try {
+                    const response = await axios.get(`${process.env.REACT_APP_API_BASE_URL}/colleges/${selectedCollegeId}/similar`);
+                    responses.similarColleges = response.data;
+                } catch (error) {
+                    responses.similarColleges = [];
+                }
             })(),
             (async () => {
                 const response = await axios.get(`${process.env.REACT_APP_API_BASE_URL}/colleges/${selectedCollegeId}/students`);
