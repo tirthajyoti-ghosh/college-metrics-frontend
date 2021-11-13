@@ -9,7 +9,7 @@ import {
 
 const geoUrl = 'https://raw.githubusercontent.com/zcreativelabs/react-simple-maps/master/topojson-maps/world-110m.json';
 
-const MapChart = ({ setTooltipContent, data }) => {
+const MapChart = ({ setTooltipContent, data, dispatchUpdateTableDataType }) => {
     const [position, setPosition] = useState({ coordinates: [0, 0], zoom: 1 });
     function handleZoomIn() {
         if (position.zoom >= 4) return;
@@ -39,8 +39,12 @@ const MapChart = ({ setTooltipContent, data }) => {
                                     fill={d ? '#ff5233' : '#ffedea'}
                                     onClick={() => {
                                         if (d) {
-                                            const { country, count } = d;
-                                            console.log(country, count);
+                                            const { country } = d;
+
+                                            dispatchUpdateTableDataType({
+                                                type: 'country',
+                                                value: country,
+                                            });
                                         }
                                     }}
                                     onMouseEnter={() => {

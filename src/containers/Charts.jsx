@@ -1,11 +1,17 @@
+/* eslint-disable react/prop-types */
 import React, { useEffect, useState } from 'react';
+import { connect } from 'react-redux';
 import axios from 'axios';
 import ReactTooltip from 'react-tooltip';
 
 import MapChart from '../components/MapChart';
 import DonutChart from '../components/DonutChart';
 
-const Charts = () => {
+import { updateTableDataType } from '../store/actions';
+
+const Charts = ({
+    dispatchUpdateTableDataType,
+}) => {
     const [data, setData] = useState({});
     const [loading, setLoading] = useState(true);
 
@@ -22,12 +28,26 @@ const Charts = () => {
     }, []);
     return loading ? <h1>Loading...</h1> : (
         <section className="section charts">
-            <MapChart data={data.countryStats} setTooltipContent={setContent} />
+            <MapChart
+                data={data.countryStats}
+                setTooltipContent={setContent}
+                dispatchUpdateTableDataType={dispatchUpdateTableDataType}
+            />
             <ReactTooltip>{content}</ReactTooltip>
 
-            <DonutChart data={data.courseStats} />
+            <DonutChart
+                data={data.courseStats}
+                dispatchUpdateTableDataType={dispatchUpdateTableDataType}
+            />
         </section>
     );
 };
 
-export default Charts;
+const mapDispatchToProps = (dispatch) => ({
+    dispatchUpdateTableDataType: (value) => dispatch(updateTableDataType(value)),
+});
+
+export default connect(
+    null,
+    mapDispatchToProps,
+)(Charts);

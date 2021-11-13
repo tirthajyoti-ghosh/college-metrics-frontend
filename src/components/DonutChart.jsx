@@ -1,24 +1,35 @@
 /* eslint-disable react/prop-types */
 import Chart from 'react-apexcharts';
 
-const LineChart = ({ data }) => (
+const DonutChart = ({
+    data,
+    dispatchUpdateTableDataType,
+}) => (
     <div>
         <Chart
             options={{
                 chart: {
                     type: 'donut',
-                },
-                responsive: [{
-                    breakpoint: 480,
-                    options: {
-                        chart: {
-                            width: 200,
-                        },
-                        legend: {
-                            position: 'bottom',
+                    events: {
+                        dataPointSelection(chartContext, seriesIndex, config) {
+                            dispatchUpdateTableDataType({
+                                type: 'course',
+                                value: config.w.config.labels[config.dataPointIndex],
+                            });
                         },
                     },
-                }],
+                },
+                // responsive: [{
+                //     breakpoint: 480,
+                //     options: {
+                //         chart: {
+                //             width: 200,
+                //         },
+                //         legend: {
+                //             position: 'bottom',
+                //         },
+                //     },
+                // }],
                 labels: data.map((item) => item.course),
                 legend: {
                     formatter(seriesName) {
@@ -33,4 +44,4 @@ const LineChart = ({ data }) => (
     </div>
 );
 
-export default LineChart;
+export default DonutChart;

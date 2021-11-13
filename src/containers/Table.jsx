@@ -12,6 +12,7 @@ import {
 
 const Table = ({
     type,
+    tableDataType,
     dispatchUpdateOpenDetailsSectionState,
     dispatchUpdateSelectedCollegeId,
 }) => {
@@ -29,8 +30,37 @@ const Table = ({
         fetchData();
     }, []);
 
+    useEffect(() => {
+        async function fetchData() {
+            setLoading(true);
+
+            const { type, value } = tableDataType;
+            const response = await axios.get(`${process.env.REACT_APP_API_BASE_URL}/colleges/list?type=${type}&value=${value}`);
+
+            setData(response.data);
+            setLoading(false);
+        }
+
+        if (tableDataType !== null) {
+            fetchData();
+        }
+    }, [tableDataType]);
+
+    let heading = 'All colleges';
+    if (tableDataType !== null) {
+        if (tableDataType.type === 'country') {
+            heading = `Colleges in ${tableDataType.value}`;
+        } else {
+            heading = `Colleges offering ${tableDataType.value}`;
+        }
+    }
+
     return loading ? <h1>Loading...</h1> : (
         <section className="section table">
+            <h2>
+                {heading}
+            </h2>
+
             <TableComponent
                 type={type}
                 data={data}
@@ -41,6 +71,10 @@ const Table = ({
     );
 };
 
+const mapStateToProps = (state) => ({
+    tableDataType: state.tableDataType,
+});
+
 const mapDispatchToProps = (dispatch) => ({
     dispatchUpdateOpenDetailsSectionState: (value) => (
         dispatch(updateOpenDetailsSectionState(value))
@@ -49,6 +83,6 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 export default connect(
-    null,
+    mapStateToProps,
     mapDispatchToProps,
 )(Table);
