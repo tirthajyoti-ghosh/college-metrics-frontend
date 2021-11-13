@@ -10,6 +10,7 @@ const DonutChart = ({
             options={{
                 chart: {
                     type: 'donut',
+                    fontFamily: 'Avenir, Courier, monospace',
                     events: {
                         dataPointSelection(chartContext, seriesIndex, config) {
                             dispatchUpdateTableDataType({
@@ -19,6 +20,7 @@ const DonutChart = ({
                         },
                     },
                 },
+                width: '40%',
                 // responsive: [{
                 //     breakpoint: 480,
                 //     options: {
@@ -32,6 +34,7 @@ const DonutChart = ({
                 // }],
                 labels: data.map((item) => item.course),
                 legend: {
+                    position: 'bottom',
                     formatter(seriesName) {
                         return seriesName;
                     },

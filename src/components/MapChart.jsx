@@ -1,4 +1,5 @@
 /* eslint-disable react/prop-types */
+import { Button } from 'antd';
 import React, { memo, useState } from 'react';
 import {
     ZoomableGroup,
@@ -23,7 +24,12 @@ const MapChart = ({ setTooltipContent, data, dispatchUpdateTableDataType }) => {
 
     return (
         <>
-            <ComposableMap data-tip="" projectionConfig={{ scale: 200 }}>
+            <ComposableMap
+                data-tip=""
+                projectionConfig={{ scale: 160, rotation: [-11, 0, 0] }}
+                height={400}
+                // style={{ width: '100%', height: 'auto' }}
+            >
                 <ZoomableGroup
                     center={position.coordinates}
                     zoom={position.zoom}
@@ -65,31 +71,38 @@ const MapChart = ({ setTooltipContent, data, dispatchUpdateTableDataType }) => {
                 </ZoomableGroup>
             </ComposableMap>
             <div className="controls">
-                <button onClick={handleZoomIn} type="button">
-                    <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="24"
-                        height="24"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                        strokeWidth="3"
-                    >
-                        <line x1="12" y1="5" x2="12" y2="19" />
-                        <line x1="5" y1="12" x2="19" y2="12" />
-                    </svg>
-                </button>
-                <button onClick={handleZoomOut} type="button">
-                    <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="24"
-                        height="24"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                        strokeWidth="3"
-                    >
-                        <line x1="5" y1="12" x2="19" y2="12" />
-                    </svg>
-                </button>
+                <Button
+                    icon={(
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="24"
+                            height="24"
+                            viewBox="0 0 24 24"
+                            stroke="currentColor"
+                            strokeWidth="3"
+                        >
+                            <line x1="12" y1="5" x2="12" y2="19" />
+                            <line x1="5" y1="12" x2="19" y2="12" />
+                        </svg>
+                    )}
+                    onClick={() => handleZoomIn()}
+                />
+
+                <Button
+                    onClick={() => handleZoomOut()}
+                    icon={(
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="24"
+                            height="24"
+                            viewBox="0 0 24 24"
+                            stroke="currentColor"
+                            strokeWidth="3"
+                        >
+                            <line x1="5" y1="12" x2="19" y2="12" />
+                        </svg>
+                    )}
+                />
             </div>
         </>
     );

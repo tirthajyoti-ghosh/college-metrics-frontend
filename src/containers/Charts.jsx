@@ -27,13 +27,15 @@ const Charts = ({
         getData();
     }, []);
     return loading ? <h1>Loading...</h1> : (
-        <section className="section charts">
-            <MapChart
-                data={data.countryStats}
-                setTooltipContent={setContent}
-                dispatchUpdateTableDataType={dispatchUpdateTableDataType}
-            />
-            <ReactTooltip>{content}</ReactTooltip>
+        <section className="charts">
+            <div className="map">
+                <MapChart
+                    data={data.countryStats}
+                    setTooltipContent={setContent}
+                    dispatchUpdateTableDataType={dispatchUpdateTableDataType}
+                />
+                <ReactTooltip>{content}</ReactTooltip>
+            </div>
 
             <DonutChart
                 data={data.courseStats}
