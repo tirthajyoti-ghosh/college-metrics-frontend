@@ -34,13 +34,10 @@ const Table = ({
     } else {
         columns = [
             {
-                title: 'ID', dataIndex: 'id', key: 'id', width: 150,
+                title: 'ID', dataIndex: 'id', key: 'id', width: 100,
             },
             {
-                title: 'Name', dataIndex: 'name', key: 'name', width: 350,
-            },
-            {
-                title: 'Year Of Batch', dataIndex: 'yearOfBatch', key: 'yearOfBatch', width: 150,
+                title: 'Name', dataIndex: 'name', key: 'name',
             },
         ];
 
@@ -61,10 +58,13 @@ const Table = ({
                     expandedRowRender: (record) => (
                         <StudentDetails student={record} />
                     ),
+                    expandRowByClick: type === 'students', // expand row by clicking anywhere in the whole row
+                    expandIcon: null,
                 }}
                 onRow={(record) => ({
                     onClick: () => {
                         if (type === 'colleges') {
+                            window.scrollTo(0, 0);
                             dispatchUpdateSelectedCollegeId(record.key);
                         }
                     },

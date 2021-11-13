@@ -7,7 +7,7 @@ const StudentDetails = ({ student }) => {
     const { Meta } = Card;
 
     return (
-        <Card style={{ width: 300, marginTop: 16 }} bordered={false}>
+        <Card bordered={false}>
             <Meta
                 avatar={<Avatar src={`https://avatars.dicebear.com/api/miniavs/${student.name}.svg`} />}
                 title={student.name}
@@ -16,19 +16,21 @@ const StudentDetails = ({ student }) => {
                         <p>
                             ID:
                             {' '}
-                            {student.id}
+                            <span>{student.id}</span>
                         </p>
                         <p>
                             Year of batch:
                             {' '}
-                            {student.yearOfBatch}
+                            <span>{student.yearOfBatch}</span>
                         </p>
                         <p>
                             Skills:
                             {' '}
-                            {student.skills.map((skill) => (
-                                <Tag key={skill}>{skill}</Tag>
-                            ))}
+                            <span>
+                                {student.skills.map((skill) => (
+                                    <Tag key={skill}>{skill}</Tag>
+                                ))}
+                            </span>
                         </p>
 
                     </>

@@ -1,0 +1,22 @@
+.ant-card-body {
+    margin: 20px;
+}
+
+.ant-card-meta-description {
+    p {
+        display: flex;
+
+        & > span {
+            color: #000;
+            padding-left: 5px;
+        }
+
+        .ant-tag {
+            margin: 0 5px 5px 0;
+            background: #2330b91a;
+            color: #2330b9;
+            border: 1px solid #2330b9;
+            border-radius: 5px;
+        }
+    }
+}
