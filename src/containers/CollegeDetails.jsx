@@ -65,6 +65,7 @@ const CollegeDetails = ({
             <Table
                 type="colleges"
                 scrollY={300}
+                isCollegeDetails
                 data={data.similarColleges}
                 dispatchUpdateSelectedCollegeId={dispatchUpdateSelectedCollegeId}
             />

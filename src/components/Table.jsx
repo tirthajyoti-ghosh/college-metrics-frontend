@@ -6,6 +6,7 @@ const Table = ({
     type,
     data,
     scrollY,
+    isCollegeDetails,
     dispatchUpdateSelectedCollegeId,
 }) => {
     let columns;
@@ -25,6 +26,17 @@ const Table = ({
                 title: 'Year Founded', dataIndex: 'yearFounded', key: 'yearFounded', width: 150,
             },
         ];
+
+        if (isCollegeDetails) { // if rendered in college details page, only show two columns
+            columns = [
+                {
+                    title: 'ID', dataIndex: 'id', key: 'id', width: 100,
+                },
+                {
+                    title: 'Name', dataIndex: 'name', key: 'name',
+                },
+            ];
+        }
 
         dataSource = data.map((college) => ({
             ...college,
