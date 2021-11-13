@@ -9,7 +9,6 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 
 const initialState = {
-    isOpenDetailsSection: false, // determines if the details section on the right is open
     tableDataType: null, // determines which type of table data is displayed
     selectedCollegeId: null,
 };

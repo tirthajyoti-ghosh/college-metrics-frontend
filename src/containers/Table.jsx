@@ -5,15 +5,12 @@ import axios from 'axios';
 
 import TableComponent from '../components/Table';
 
-import {
-    updateOpenDetailsSectionState,
-    updateSelectedCollegeId,
-} from '../store/actions';
+import { updateSelectedCollegeId } from '../store/actions';
 
 const Table = ({
     type,
+    scrollY,
     tableDataType,
-    dispatchUpdateOpenDetailsSectionState,
     dispatchUpdateSelectedCollegeId,
 }) => {
     const [data, setData] = useState([]);
@@ -22,6 +19,10 @@ const Table = ({
     useEffect(() => {
         async function fetchData() {
             const response = await axios.get(`${process.env.REACT_APP_API_BASE_URL}/colleges/list`);
+
+            // eslint-disable-next-line max-len
+            const randomCollegeId = response.data[Math.floor(Math.random() * response.data.length)].id;
+            dispatchUpdateSelectedCollegeId(randomCollegeId);
 
             setData(response.data);
             setLoading(false);
@@ -64,7 +65,7 @@ const Table = ({
             <TableComponent
                 type={type}
                 data={data}
-                dispatchUpdateOpenDetailsSectionState={dispatchUpdateOpenDetailsSectionState}
+                scrollY={scrollY}
                 dispatchUpdateSelectedCollegeId={dispatchUpdateSelectedCollegeId}
             />
         </section>
@@ -76,9 +77,6 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-    dispatchUpdateOpenDetailsSectionState: (value) => (
-        dispatch(updateOpenDetailsSectionState(value))
-    ),
     dispatchUpdateSelectedCollegeId: (value) => dispatch(updateSelectedCollegeId(value)),
 });
 

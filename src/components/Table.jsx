@@ -5,7 +5,7 @@ import StudentDetails from './StudentDetails';
 const Table = ({
     type,
     data,
-    dispatchUpdateOpenDetailsSectionState,
+    scrollY,
     dispatchUpdateSelectedCollegeId,
 }) => {
     let columns;
@@ -56,7 +56,7 @@ const Table = ({
             <AntDTable
                 columns={columns}
                 dataSource={dataSource}
-                scroll={{ y: 240 }}
+                scroll={{ y: scrollY }}
                 expandable={type === 'students' && {
                     expandedRowRender: (record) => (
                         <StudentDetails student={record} />
@@ -65,10 +65,6 @@ const Table = ({
                 onRow={(record) => ({
                     onClick: () => {
                         if (type === 'colleges') {
-                            if (dispatchUpdateOpenDetailsSectionState) {
-                                dispatchUpdateOpenDetailsSectionState(true);
-                            }
-
                             dispatchUpdateSelectedCollegeId(record.key);
                         }
                     },

@@ -10,7 +10,6 @@ import { updateSelectedCollegeId } from '../store/actions';
 
 const CollegeDetails = ({
     selectedCollegeId,
-    isOpenDetailsSection,
     dispatchUpdateSelectedCollegeId,
 }) => {
     const [data, setData] = useState({});
@@ -47,36 +46,33 @@ const CollegeDetails = ({
         }
     }, [selectedCollegeId]);
 
-    if (isOpenDetailsSection) {
-        if (loading) {
-            <h1>Loading...</h1>;
-        } else {
-            return (
-                <section className="section college-details">
-                    <CollegeInfo college={data.college} />
-
-                    <h2>Students</h2>
-                    <Table
-                        type="students"
-                        data={data.students}
-                    />
-
-                    <h2>Similar Colleges</h2>
-                    <Table
-                        type="colleges"
-                        data={data.similarColleges}
-                        dispatchUpdateSelectedCollegeId={dispatchUpdateSelectedCollegeId}
-                    />
-                </section>
-            );
-        }
+    if (loading) {
+        return <h1>Loading...</h1>;
     }
 
-    return null;
+    return (
+        <section className="section college-details">
+            <CollegeInfo college={data.college} />
+
+            <h2>Students</h2>
+            <Table
+                type="students"
+                scrollY={350}
+                data={data.students}
+            />
+
+            <h2>Similar Colleges</h2>
+            <Table
+                type="colleges"
+                scrollY={300}
+                data={data.similarColleges}
+                dispatchUpdateSelectedCollegeId={dispatchUpdateSelectedCollegeId}
+            />
+        </section>
+    );
 };
 
 const mapStateToProps = (state) => ({
-    isOpenDetailsSection: state.isOpenDetailsSection,
     selectedCollegeId: state.selectedCollegeId,
 });
 
