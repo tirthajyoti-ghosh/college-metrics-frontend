@@ -1,13 +1,11 @@
 import { combineReducers } from 'redux';
 
 import openDetailsSectionState from './openDetailsSectionState';
-import fullViewModalState from './fullViewModalState';
 import selectedCollegeId from './selectedCollegeId';
-import modalTableData from './modalTableData';
+import tableDataType from './tableDataType';
 
 export default combineReducers({
     isOpenDetailsSection: openDetailsSectionState,
     selectedCollegeId,
-    isOpenFullViewModal: fullViewModalState,
-    modalTableData,
+    tableDataType,
 });

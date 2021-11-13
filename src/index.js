@@ -10,9 +10,8 @@ import reportWebVitals from './reportWebVitals';
 
 const initialState = {
     isOpenDetailsSection: false, // determines if the details section on the right is open
-    isOpenFullViewModal: false, // determines if the modal that shows full data is open
+    tableDataType: null, // determines which type of table data is displayed
     selectedCollegeId: null,
-    modalTableData: [], // data that is shown in the modal
 };
 
 const store = createStore(reducer,

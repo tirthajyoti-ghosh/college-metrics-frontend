@@ -8,12 +8,7 @@ export const updateSelectedCollegeId = (value) => ({
     value,
 });
 
-export const updateOpenFullViewModalState = (value) => ({
-    type: 'UPDATE_OPEN_FULL_VIEW_MODAL_STATE',
-    value,
-});
-
-export const updateModalTableData = (value) => ({
-    type: 'UPDATE_MODAL_TABLE_DATA',
+export const updateTableDataType = (value) => ({
+    type: 'UPDATE_TABLE_DATA_TYPE',
     value,
 });
