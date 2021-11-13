@@ -1,0 +1,32 @@
+.college-info {
+    h1 {
+        font-size: 1.7rem;
+        text-align: center;
+        margin-bottom: 1rem;
+    }
+
+    p.location {
+        font-size: 1.1rem;
+        display: flex;
+        justify-content: center;
+
+        svg {
+            margin-right: 0.4rem;
+        }
+    }
+
+    .courses-list {
+        margin-bottom: 40px;
+
+        .ant-tag {
+            font-size: 0.9rem;
+            font-weight: normal;
+            padding: 5px 15px;
+            margin: 0 10px 10px 0;
+            background: #ff72381a;
+            color: #ff7238;
+            border: 1px solid #ff7238;
+            border-radius: 5px;
+        }
+    }
+}
