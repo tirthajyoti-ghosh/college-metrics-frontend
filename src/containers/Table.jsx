@@ -1,10 +1,20 @@
+/* eslint-disable react/prop-types */
 import React, { useEffect, useState } from 'react';
+import { connect } from 'react-redux';
 import axios from 'axios';
 
 import TableComponent from '../components/Table';
 
-// eslint-disable-next-line react/prop-types
-const Table = ({ type }) => {
+import {
+    updateOpenDetailsSectionState,
+    updateSelectedCollegeId,
+} from '../store/actions';
+
+const Table = ({
+    type,
+    dispatchUpdateOpenDetailsSectionState,
+    dispatchUpdateSelectedCollegeId,
+}) => {
     const [data, setData] = useState([]);
     const [loading, setLoading] = useState(true);
 
@@ -20,10 +30,25 @@ const Table = ({ type }) => {
     }, []);
 
     return loading ? <h1>Loading...</h1> : (
-        <div className="section table">
-            <TableComponent type={type} data={data} />
-        </div>
+        <section className="section table">
+            <TableComponent
+                type={type}
+                data={data}
+                dispatchUpdateOpenDetailsSectionState={dispatchUpdateOpenDetailsSectionState}
+                dispatchUpdateSelectedCollegeId={dispatchUpdateSelectedCollegeId}
+            />
+        </section>
     );
 };
 
-export default Table;
+const mapDispatchToProps = (dispatch) => ({
+    dispatchUpdateOpenDetailsSectionState: (value) => (
+        dispatch(updateOpenDetailsSectionState(value))
+    ),
+    dispatchUpdateSelectedCollegeId: (value) => dispatch(updateSelectedCollegeId(value)),
+});
+
+export default connect(
+    null,
+    mapDispatchToProps,
+)(Table);

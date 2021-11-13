@@ -21,12 +21,12 @@ const Charts = () => {
         getData();
     }, []);
     return loading ? <h1>Loading...</h1> : (
-        <div className="section charts">
+        <section className="section charts">
             <MapChart data={data.countryStats} setTooltipContent={setContent} />
             <ReactTooltip>{content}</ReactTooltip>
 
             <DonutChart data={data.courseStats} />
-        </div>
+        </section>
     );
 };
 

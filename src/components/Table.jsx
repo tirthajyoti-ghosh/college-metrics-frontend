@@ -1,7 +1,13 @@
 /* eslint-disable react/prop-types */
 import { Table as AntDTable } from 'antd';
+import StudentDetails from './StudentDetails';
 
-const Table = ({ type, data }) => {
+const Table = ({
+    type,
+    data,
+    dispatchUpdateOpenDetailsSectionState,
+    dispatchUpdateSelectedCollegeId,
+}) => {
     let columns;
     let dataSource;
     if (type === 'colleges') {
@@ -38,7 +44,11 @@ const Table = ({ type, data }) => {
             },
         ];
 
-        dataSource = data;
+        dataSource = data.map((student) => ({
+            ...student,
+            key: student.id,
+            id: student.id.slice(-4).toUpperCase(),
+        }));
     }
 
     return (
@@ -49,11 +59,19 @@ const Table = ({ type, data }) => {
                 scroll={{ y: 240 }}
                 expandable={type === 'students' && {
                     expandedRowRender: (record) => (
-                        <p style={{ margin: 0 }}>{record.description}</p>
+                        <StudentDetails student={record} />
                     ),
                 }}
-                onRow={(record, rowIndex) => ({
-                    onClick: () => console.log(record, rowIndex), // click row
+                onRow={(record) => ({
+                    onClick: () => {
+                        if (type === 'colleges') {
+                            if (dispatchUpdateOpenDetailsSectionState) {
+                                dispatchUpdateOpenDetailsSectionState(true);
+                            }
+
+                            dispatchUpdateSelectedCollegeId(record.key);
+                        }
+                    },
                 })}
             />
         </div>
