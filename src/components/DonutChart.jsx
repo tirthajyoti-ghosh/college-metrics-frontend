@@ -13,6 +13,8 @@ const DonutChart = ({
                     fontFamily: 'Avenir, Courier, monospace',
                     events: {
                         dataPointSelection(chartContext, seriesIndex, config) {
+                            window.scrollTo(0, document.body.scrollHeight / 4);
+
                             dispatchUpdateTableDataType({
                                 type: 'course',
                                 value: config.w.config.labels[config.dataPointIndex],

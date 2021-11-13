@@ -45,6 +45,8 @@ const MapChart = ({ setTooltipContent, data, dispatchUpdateTableDataType }) => {
                                     fill={d ? '#ff5233' : '#ffedea'}
                                     onClick={() => {
                                         if (d) {
+                                            window.scrollTo(0, document.body.scrollHeight / 4);
+
                                             const { country } = d;
 
                                             dispatchUpdateTableDataType({
