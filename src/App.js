@@ -8,15 +8,18 @@ import './styles/main.scss';
 function App() {
     return (
         <div className="App">
-            <section className="left">
-                <Navbar />
-                <Charts />
-                <Table type="colleges" />
-            </section>
+            <Navbar />
 
-            <section className="right">
-                <CollegeDetails />
-            </section>
+            <main>
+                <section className="left">
+                    <Charts />
+                    <Table type="colleges" scrollY={500} />
+                </section>
+
+                <section className="right">
+                    <CollegeDetails />
+                </section>
+            </main>
         </div>
     );
 }

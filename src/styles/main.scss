@@ -1,1 +1,41 @@
 @import '~antd/dist/antd.css';
+
+// Fonts
+@import './fonts';
+
+// Reset
+@import './reset';
+
+// Navbar
+@import './navbar';
+
+// Charts
+@import './charts';
+
+// College Info
+@import './college-details/info';
+
+// College Stats
+@import './college-details/stats';
+
+// Table
+@import './table';
+
+.App {
+    main {
+        display: flex;
+        
+        .left {
+            width: 75%;
+            padding: 0 40px;
+        }
+        
+        .right {
+            width: 25%;
+            margin: 40px 40px 40px 0;
+            padding: 30px;
+            border-radius: 20px;
+            background-color: #fff;
+        }
+    }
+}
