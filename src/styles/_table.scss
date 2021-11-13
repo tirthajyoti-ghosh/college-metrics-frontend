@@ -1,0 +1,55 @@
+.ant-table {
+    background-color: transparent;
+
+    table {
+        border-collapse: separate;
+        border-spacing: 0 10px;
+
+        tr {
+            cursor: pointer;
+        }
+    }
+}
+
+.ant-table-body {
+    padding-right: 10px;
+}
+
+.ant-table-tbody > tr.ant-table-row:hover > td {
+    background: #fff;
+}
+
+section.college-details {
+    .ant-table table {
+        border-collapse: separate;
+        border-spacing: 0;
+    }
+
+    .ant-table-tbody > tr.ant-table-row:hover > td {
+        background: #fafafa;
+    }
+}
+
+.ant-table-tbody > tr > td {
+    border: none;
+}
+
+tr.ant-table-row.ant-table-row-level-0 {
+    background: #fff;
+    border-radius: 10px;
+}
+
+tr.ant-table-expanded-row {
+    &:hover > td {
+        background: #fff;
+    }
+
+    .ant-table-cell {
+        padding: 0;
+        background: #fff;
+
+        .ant-card {
+            margin: 0;
+        }
+    }
+}
