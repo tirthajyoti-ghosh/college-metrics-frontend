@@ -3,10 +3,10 @@ import { Table as AntDTable } from 'antd';
 import StudentDetails from './StudentDetails';
 
 const Table = ({
-    type,
+    type, // which table to display - "college" or "student"
     data,
-    scrollY,
-    isCollegeDetails,
+    scrollY, // height of the table, different for college and student
+    isCollegeDetails, // whether this table is rendered in college details section
     dispatchUpdateSelectedCollegeId,
     dispatchUpdateDetailsSectionVisible,
 }) => {

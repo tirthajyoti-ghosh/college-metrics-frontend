@@ -28,7 +28,6 @@ const MapChart = ({ setTooltipContent, data, dispatchUpdateTableDataType }) => {
                 data-tip=""
                 projectionConfig={{ scale: 160, rotation: [-11, 0, 0] }}
                 height={400}
-                // style={{ width: '100%', height: 'auto' }}
             >
                 <ZoomableGroup
                     center={position.coordinates}

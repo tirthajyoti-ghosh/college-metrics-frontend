@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 /* eslint-disable react/prop-types */
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
@@ -8,15 +9,16 @@ import TableComponent from '../components/Table';
 import { updateSelectedCollegeId, updateDetailsSectionVisible } from '../store/actions';
 
 const Table = ({
-    type,
-    scrollY,
-    tableDataType,
+    type, // which table to display - "college" or "student"
+    scrollY, // height of the table, different for college and student
+    tableDataType, // in "colleges" table, this is the data type to display - by "country" or "course"
     dispatchUpdateSelectedCollegeId,
     dispatchUpdateDetailsSectionVisible,
 }) => {
     const [data, setData] = useState([]);
     const [loading, setLoading] = useState(true);
 
+    // This runs on mount i.e., when the page loads
     useEffect(() => {
         async function fetchData() {
             const response = await axios.get(`${process.env.REACT_APP_API_BASE_URL}/colleges/list`);
@@ -34,6 +36,8 @@ const Table = ({
         fetchData();
     }, []);
 
+    // This runs on mount and every time the tableDataType changes
+    // i.e., when the user clicks on a country map or course donut chart slice
     useEffect(() => {
         async function fetchData() {
             setLoading(true);
