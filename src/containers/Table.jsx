@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import axios from 'axios';
 
 import TableComponent from '../components/Table';
+import { DataTableSkeleton } from '../components/SkeletonLoaders';
 
 import { updateSelectedCollegeId, updateDetailsSectionVisible } from '../store/actions';
 
@@ -65,7 +66,7 @@ const Table = ({
 
     return (
         <section className="section table">
-            {loading ? <h1>Loading...</h1> : (
+            {loading ? <DataTableSkeleton /> : (
                 <>
                     <h2>
                         {heading}

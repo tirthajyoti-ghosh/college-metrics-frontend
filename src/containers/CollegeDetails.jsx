@@ -1,11 +1,12 @@
 /* eslint-disable react/prop-types */
 import React, { useEffect, useState } from 'react';
-import { Drawer } from 'antd';
+import { Drawer, Skeleton } from 'antd';
 import { connect } from 'react-redux';
 import axios from 'axios';
 
 import CollegeInfo from '../components/CollegeInfo';
 import Table from '../components/Table';
+import { DataTableSkeleton } from '../components/SkeletonLoaders';
 
 import { updateSelectedCollegeId, updateDetailsSectionVisible } from '../store/actions';
 import useMediaQuery from '../hooks/useMediaQuery';
@@ -83,27 +84,43 @@ const CollegeDetails = ({
         }
     }, [selectedCollegeId]); // Wee get the data only when the selected college id changes.
 
-    const contentJsx = loading ? <h1>Loading...</h1> : (
-        <>
-            <CollegeInfo college={data.college} />
+    const contentJsx = loading
+        ? (
+            <div className="loader">
+                <Skeleton active />
+                <br />
+                <br />
+                <Skeleton active rows={1} />
+                <br />
+                <br />
+                <DataTableSkeleton />
+                <br />
+                <br />
+                <br />
+                <br />
+                <DataTableSkeleton />
+            </div>
+        ) : (
+            <>
+                <CollegeInfo college={data.college} />
 
-            <h2>Students</h2>
-            <Table
-                type="students"
-                scrollY={350}
-                data={data.students}
-            />
+                <h2>Students</h2>
+                <Table
+                    type="students"
+                    scrollY={350}
+                    data={data.students}
+                />
 
-            <h2>Similar Colleges</h2>
-            <Table
-                type="colleges"
-                scrollY={300}
-                isCollegeDetails // this colleges table is rendered in college details section
-                data={data.similarColleges}
-                dispatchUpdateSelectedCollegeId={dispatchUpdateSelectedCollegeId}
-            />
-        </>
-    );
+                <h2>Similar Colleges</h2>
+                <Table
+                    type="colleges"
+                    scrollY={300}
+                    isCollegeDetails // this colleges table is rendered in college details section
+                    data={data.similarColleges}
+                    dispatchUpdateSelectedCollegeId={dispatchUpdateSelectedCollegeId}
+                />
+            </>
+        );
 
     return isSmallDesktop
         ? (

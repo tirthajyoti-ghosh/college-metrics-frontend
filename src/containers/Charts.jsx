@@ -6,6 +6,7 @@ import ReactTooltip from 'react-tooltip';
 
 import MapChart from '../components/MapChart';
 import DonutChart from '../components/DonutChart';
+import { PieChartSkeleton, BarChartSkeleton } from '../components/SkeletonLoaders';
 
 import { updateTableDataType } from '../store/actions';
 
@@ -28,23 +29,29 @@ const Charts = ({
     }, []);
     return (
         <section className="charts">
-            {loading ? <h1>Loading...</h1> : (
-                <>
-                    <div className="map">
-                        <MapChart
-                            data={data.countryStats}
-                            setTooltipContent={setContent}
+            {loading
+                ? (
+                    <div className="loader">
+                        <BarChartSkeleton />
+                        <PieChartSkeleton />
+                    </div>
+                ) : (
+                    <>
+                        <div className="map">
+                            <MapChart
+                                data={data.countryStats}
+                                setTooltipContent={setContent}
+                                dispatchUpdateTableDataType={dispatchUpdateTableDataType}
+                            />
+                            <ReactTooltip>{content}</ReactTooltip>
+                        </div>
+
+                        <DonutChart
+                            data={data.courseStats}
                             dispatchUpdateTableDataType={dispatchUpdateTableDataType}
                         />
-                        <ReactTooltip>{content}</ReactTooltip>
-                    </div>
-
-                    <DonutChart
-                        data={data.courseStats}
-                        dispatchUpdateTableDataType={dispatchUpdateTableDataType}
-                    />
-                </>
-            )}
+                    </>
+                )}
         </section>
     );
 };

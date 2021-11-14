@@ -43,6 +43,42 @@ section.charts {
         padding: 20px;
     }
 
+    .loader {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+
+        @media (max-width: 1350px) {
+            height: 50vh;
+            display: block;
+        }
+
+        @media (max-width: 1100px) {
+            display: flex;
+        }
+
+        @media (max-width: 876px) {
+            display: block;
+        }
+        
+        .pie-chart,
+        .bar-chart {
+            height: 80%;
+            width: 50%;
+
+            @media (max-width: 1350px) {
+                height: 50%;
+                width: 100%;
+            }
+
+            @media (max-width: 876px) {
+                height: 50%;
+                width: 100%;
+            }
+        }
+    }
+
     .map {
         width: 60%;
         position: relative;
