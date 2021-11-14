@@ -11,6 +11,8 @@ import { DataTableSkeleton } from '../components/SkeletonLoaders';
 import { updateSelectedCollegeId, updateDetailsSectionVisible } from '../store/actions';
 import useMediaQuery from '../hooks/useMediaQuery';
 
+import config from '../config';
+
 // AntD does not recognize styles in SCSS files
 // The choice is either use LESS or CSS
 // To convert to LESS at this stage of development will be a big headache
@@ -52,12 +54,12 @@ const CollegeDetails = ({
         // Get college details AND similar colleges AND students simultaneously.
         const promises = [
             (async () => {
-                const response = await axios.get(`${process.env.REACT_APP_API_BASE_URL}/colleges/${selectedCollegeId}`);
+                const response = await axios.get(`${config.API_BASE_URL}/colleges/${selectedCollegeId}`);
                 responses.college = response.data;
             })(),
             (async () => {
                 try {
-                    const response = await axios.get(`${process.env.REACT_APP_API_BASE_URL}/colleges/${selectedCollegeId}/similar`);
+                    const response = await axios.get(`${config.API_BASE_URL}/colleges/${selectedCollegeId}/similar`);
                     responses.similarColleges = response.data;
                 } catch (error) {
                     responses.similarColleges = [];
@@ -65,7 +67,7 @@ const CollegeDetails = ({
             })(),
             (async () => {
                 try {
-                    const response = await axios.get(`${process.env.REACT_APP_API_BASE_URL}/colleges/${selectedCollegeId}/students`);
+                    const response = await axios.get(`${config.API_BASE_URL}/colleges/${selectedCollegeId}/students`);
                     responses.students = response.data;
                 } catch (error) {
                     responses.students = [];

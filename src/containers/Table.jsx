@@ -9,6 +9,8 @@ import { DataTableSkeleton } from '../components/SkeletonLoaders';
 
 import { updateSelectedCollegeId, updateDetailsSectionVisible } from '../store/actions';
 
+import config from '../config';
+
 const Table = ({
     type, // which table to display - "college" or "student"
     scrollY, // height of the table, different for college and student
@@ -22,7 +24,7 @@ const Table = ({
     // This runs on mount i.e., when the page loads
     useEffect(() => {
         async function fetchData() {
-            const response = await axios.get(`${process.env.REACT_APP_API_BASE_URL}/colleges/list`);
+            const response = await axios.get(`${config.API_BASE_URL}/colleges/list`);
 
             if (window.innerWidth > 1100) {
                 // eslint-disable-next-line max-len
@@ -44,7 +46,7 @@ const Table = ({
             setLoading(true);
 
             const { type, value } = tableDataType;
-            const response = await axios.get(`${process.env.REACT_APP_API_BASE_URL}/colleges/list?type=${type}&value=${value}`);
+            const response = await axios.get(`${config.API_BASE_URL}/colleges/list?type=${type}&value=${value}`);
 
             setData(response.data);
             setLoading(false);

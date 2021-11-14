@@ -10,6 +10,8 @@ import { PieChartSkeleton, BarChartSkeleton } from '../components/SkeletonLoader
 
 import { updateTableDataType } from '../store/actions';
 
+import config from '../config';
+
 const Charts = ({
     dispatchUpdateTableDataType,
 }) => {
@@ -20,7 +22,7 @@ const Charts = ({
 
     useEffect(() => {
         async function getData() {
-            const response = await axios.get(`${process.env.REACT_APP_API_BASE_URL}/colleges/stats`);
+            const response = await axios.get(`${config.API_BASE_URL}/colleges/stats`);
             setData(response.data);
             setLoading(false);
         }
