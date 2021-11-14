@@ -8,6 +8,7 @@ const Table = ({
     scrollY,
     isCollegeDetails,
     dispatchUpdateSelectedCollegeId,
+    dispatchUpdateDetailsSectionVisible,
 }) => {
     let columns;
     let dataSource;
@@ -113,6 +114,10 @@ const Table = ({
                 onRow={(record) => ({
                     onClick: () => {
                         if (type === 'colleges') {
+                            if (dispatchUpdateDetailsSectionVisible) {
+                                dispatchUpdateDetailsSectionVisible(true);
+                            }
+
                             window.scrollTo(0, 0);
                             dispatchUpdateSelectedCollegeId(record.key);
                         }

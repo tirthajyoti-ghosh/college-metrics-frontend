@@ -11,6 +11,7 @@ import reportWebVitals from './reportWebVitals';
 const initialState = {
     tableDataType: null, // determines which type of table data is displayed
     selectedCollegeId: null,
+    detailsSectionVisible: false,
 };
 
 const store = createStore(reducer,
