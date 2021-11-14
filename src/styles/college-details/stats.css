@@ -1,0 +1,30 @@
+.college-stats {
+    margin: 40px 0;
+}
+
+.college-stats .stats {
+    display: flex;
+    justify-content: center;
+    border: 1px solid #e0e6ed;
+    border-radius: 15px;
+    padding: 20px 0;
+    color: #b3bbc3;
+}
+
+.college-stats .stats > div {
+    text-align: center;
+    flex: 1;
+    padding: 0 20px;
+}
+
+.college-stats .stats > div:first-child {
+    border-right: 1px solid #e0e6ed;
+}
+
+.college-stats .stats > div h2 {
+    margin-bottom: 0;
+}
+
+.college-stats .stats > div p {
+    margin-bottom: 0;
+}

@@ -1,0 +1,66 @@
+.college-info h1 {
+    font-size: 1.6rem;
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+.college-info p.location,
+.college-info p.year {
+    font-size: 1.1rem;
+    display: flex;
+    justify-content: center;
+}
+
+.college-info p.location svg,
+.college-info p.year svg {
+    margin-right: 0.4rem;
+    width: 25px;
+    height: 25px;
+}
+
+.college-info .courses-list {
+    margin-bottom: 40px;
+}
+
+.college-info .courses-list .ant-tag {
+    font-size: 0.9rem;
+    font-weight: normal;
+    padding: 5px 15px;
+    margin: 0 10px 10px 0;
+    background: #ff72381a;
+    color: #ff7238;
+    border: 1px solid #ff7238;
+    border-radius: 5px;
+}
+
+@media (max-width: 1200px) {
+    .college-info h1 {
+        font-size: 1.4rem;
+    }
+
+    .college-info h2 {
+        font-size: 1.2rem;
+    }
+
+    .college-info p.location,
+    .college-info p.year {
+        font-size: 1rem;
+    }
+
+    .college-info p.location svg,
+    .college-info p.year svg {
+        width: 20px;
+        height: 20px;
+    }
+
+    .college-info .courses-list .ant-tag {
+        font-size: 0.8rem;
+        padding: 3px 13px;
+    }
+}
+
+@media (max-width: 1100px) {
+    .college-info {
+        margin-top: 30px;
+    }
+}

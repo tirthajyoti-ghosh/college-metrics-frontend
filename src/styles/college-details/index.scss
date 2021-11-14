@@ -5,11 +5,11 @@
     background-color: #fff;
     
     // College Info
-    @import './info';
+    @import './info.css';
 
     // College Stats
-    @import './stats';
+    @import './stats.css';
 
     // Student Details
-    @import './student-details/card';
+    @import './student-details/card.css';
 }

@@ -15,6 +15,9 @@
 // Table
 @import './table';
 
+// College Details
+@import './college-details';
+
 .App {
     main {
         display: flex;
@@ -46,9 +49,6 @@
         
         .right {
             width: 25%;
-
-            // College Details
-            @import './college-details';
             
             @media (max-width: 1600px) {
                 width: 30%;
@@ -59,7 +59,7 @@
             }
 
             @media (max-width: 1100px) {
-                display: none;
+                width: 0;
             }
         }
     }
