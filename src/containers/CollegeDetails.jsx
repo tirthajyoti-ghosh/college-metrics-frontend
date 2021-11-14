@@ -1,19 +1,36 @@
 /* eslint-disable react/prop-types */
 import React, { useEffect, useState } from 'react';
+import { Drawer } from 'antd';
 import { connect } from 'react-redux';
 import axios from 'axios';
 
 import CollegeInfo from '../components/CollegeInfo';
 import Table from '../components/Table';
 
-import { updateSelectedCollegeId } from '../store/actions';
+import { updateSelectedCollegeId, updateDetailsSectionVisible } from '../store/actions';
+import useMediaQuery from '../hooks/useMediaQuery';
+
+// AntD does not recognize styles in SCSS files
+// The choice is either use LESS or CSS.
+// To convert to LESS at this stage of development will be a big headache.
+// So, for now, we will use CSS.
+import 'antd/dist/antd.css';
+import '../styles/college-details/info.css';
+import '../styles/college-details/stats.css';
+import '../styles/college-details/student-details/card.css';
 
 const CollegeDetails = ({
     selectedCollegeId,
+    detailsSectionVisible,
     dispatchUpdateSelectedCollegeId,
+    dispatchUpdateDetailsSectionVisible,
 }) => {
     const [data, setData] = useState({});
     const [loading, setLoading] = useState(true);
+
+    const isSmallDesktop = useMediaQuery('(max-width: 1100px)');
+    const isTablet = useMediaQuery('(max-width: 876px)');
+    const isMobile = useMediaQuery('(max-width: 768px)');
 
     const fetchData = async () => {
         setLoading(true);
@@ -34,8 +51,12 @@ const CollegeDetails = ({
                 }
             })(),
             (async () => {
-                const response = await axios.get(`${process.env.REACT_APP_API_BASE_URL}/colleges/${selectedCollegeId}/students`);
-                responses.students = response.data;
+                try {
+                    const response = await axios.get(`${process.env.REACT_APP_API_BASE_URL}/colleges/${selectedCollegeId}/students`);
+                    responses.students = response.data;
+                } catch (error) {
+                    responses.students = [];
+                }
             })(),
         ];
         await Promise.all(promises);
@@ -50,39 +71,64 @@ const CollegeDetails = ({
         }
     }, [selectedCollegeId]);
 
-    return (
-        <section className="section college-details">
-            {loading ? <h1>Loading...</h1> : (
-                <>
-                    <CollegeInfo college={data.college} />
+    const contentJsx = loading ? <h1>Loading...</h1> : (
+        <>
+            <CollegeInfo college={data.college} />
 
-                    <h2>Students</h2>
-                    <Table
-                        type="students"
-                        scrollY={350}
-                        data={data.students}
-                    />
+            <h2>Students</h2>
+            <Table
+                type="students"
+                scrollY={350}
+                data={data.students}
+            />
 
-                    <h2>Similar Colleges</h2>
-                    <Table
-                        type="colleges"
-                        scrollY={300}
-                        isCollegeDetails
-                        data={data.similarColleges}
-                        dispatchUpdateSelectedCollegeId={dispatchUpdateSelectedCollegeId}
-                    />
-                </>
-            )}
-        </section>
+            <h2>Similar Colleges</h2>
+            <Table
+                type="colleges"
+                scrollY={300}
+                isCollegeDetails
+                data={data.similarColleges}
+                dispatchUpdateSelectedCollegeId={dispatchUpdateSelectedCollegeId}
+            />
+        </>
     );
+
+    let drawerWidth = '50%';
+    if (isTablet) {
+        drawerWidth = '60%';
+    }
+
+    if (isMobile) {
+        drawerWidth = '100%';
+    }
+
+    return isSmallDesktop
+        ? (
+            <Drawer
+                placement="right"
+                mask={false}
+                width={drawerWidth}
+                onClose={() => dispatchUpdateDetailsSectionVisible(false)}
+                visible={detailsSectionVisible}
+                getContainer={false}
+            >
+                {contentJsx}
+            </Drawer>
+        ) : (
+            <section className="section college-details">
+                {contentJsx}
+            </section>
+        );
 };
 
 const mapStateToProps = (state) => ({
     selectedCollegeId: state.selectedCollegeId,
+    detailsSectionVisible: state.detailsSectionVisible,
 });
 
 const mapDispatchToProps = (dispatch) => ({
     dispatchUpdateSelectedCollegeId: (value) => dispatch(updateSelectedCollegeId(value)),
+    dispatchUpdateDetailsSectionVisible: (value) => dispatch(updateDetailsSectionVisible(value)),
 });
 
 export default connect(
