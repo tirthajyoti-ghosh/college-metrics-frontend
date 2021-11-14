@@ -1,8 +1,18 @@
 .college-info {
     h1 {
-        font-size: 1.7rem;
+        font-size: 1.6rem;
         text-align: center;
         margin-bottom: 1rem;
+
+        @media (max-width: 1200px) {
+            font-size: 1.4rem;
+        }
+    }
+
+    h2 {
+        @media (max-width: 1200px) {
+            font-size: 1.2rem;
+        }
     }
 
     p.location,
@@ -11,8 +21,19 @@
         display: flex;
         justify-content: center;
 
+        @media (max-width: 1200px) {
+            font-size: 1rem;
+        }
+
         svg {
             margin-right: 0.4rem;
+            width: 25px;
+            height: 25px;
+
+            @media (max-width: 1200px) {
+                width: 20px;
+                height: 20px;
+            }
         }
     }
 
@@ -28,6 +49,11 @@
             color: #ff7238;
             border: 1px solid #ff7238;
             border-radius: 5px;
+
+            @media (max-width: 1200px) {
+                font-size: 0.8rem;
+                padding: 3px 13px;
+            }
         }
     }
 }

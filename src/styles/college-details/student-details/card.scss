@@ -1,5 +1,9 @@
 .ant-card-body {
     margin: 20px;
+    
+    @media (max-width: 1650px) {
+        margin: 0;
+    }
 }
 
 .ant-card-meta-description {

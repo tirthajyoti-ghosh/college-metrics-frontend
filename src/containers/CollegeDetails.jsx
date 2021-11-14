@@ -50,29 +50,29 @@ const CollegeDetails = ({
         }
     }, [selectedCollegeId]);
 
-    if (loading) {
-        return <h1>Loading...</h1>;
-    }
-
     return (
         <section className="section college-details">
-            <CollegeInfo college={data.college} />
+            {loading ? <h1>Loading...</h1> : (
+                <>
+                    <CollegeInfo college={data.college} />
 
-            <h2>Students</h2>
-            <Table
-                type="students"
-                scrollY={350}
-                data={data.students}
-            />
+                    <h2>Students</h2>
+                    <Table
+                        type="students"
+                        scrollY={350}
+                        data={data.students}
+                    />
 
-            <h2>Similar Colleges</h2>
-            <Table
-                type="colleges"
-                scrollY={300}
-                isCollegeDetails
-                data={data.similarColleges}
-                dispatchUpdateSelectedCollegeId={dispatchUpdateSelectedCollegeId}
-            />
+                    <h2>Similar Colleges</h2>
+                    <Table
+                        type="colleges"
+                        scrollY={300}
+                        isCollegeDetails
+                        data={data.similarColleges}
+                        dispatchUpdateSelectedCollegeId={dispatchUpdateSelectedCollegeId}
+                    />
+                </>
+            )}
         </section>
     );
 };

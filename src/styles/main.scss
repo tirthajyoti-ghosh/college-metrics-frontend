@@ -12,15 +12,6 @@
 // Charts
 @import './charts';
 
-// College Info
-@import './college-details/info';
-
-// College Stats
-@import './college-details/stats';
-
-// Student Details
-@import './student-details/card';
-
 // Table
 @import './table';
 
@@ -31,14 +22,45 @@
         .left {
             width: 75%;
             padding: 0 40px;
+
+            @media (max-width: 1600px) {
+                width: 70%;
+            }
+
+            @media (max-width: 1350px) {
+                width: 60%;
+            }
+
+            @media (max-width: 1100px) {
+                width: 100%;
+            }
+
+            @media (max-width: 576px) {
+                padding: 0 20px;
+            }
+
+            @media (max-width: 450px) {
+                padding: 0 10px;
+            }
         }
         
         .right {
             width: 25%;
-            margin: 40px 40px 40px 0;
-            padding: 30px;
-            border-radius: 20px;
-            background-color: #fff;
+
+            // College Details
+            @import './college-details';
+            
+            @media (max-width: 1600px) {
+                width: 30%;
+            }
+
+            @media (max-width: 1350px) {
+                width: 40%;
+            }
+
+            @media (max-width: 1100px) {
+                display: none;
+            }
         }
     }
 }

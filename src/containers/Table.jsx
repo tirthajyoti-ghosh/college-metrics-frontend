@@ -56,18 +56,22 @@ const Table = ({
         }
     }
 
-    return loading ? <h1>Loading...</h1> : (
+    return (
         <section className="section table">
-            <h2>
-                {heading}
-            </h2>
+            {loading ? <h1>Loading...</h1> : (
+                <>
+                    <h2>
+                        {heading}
+                    </h2>
 
-            <TableComponent
-                type={type}
-                data={data}
-                scrollY={scrollY}
-                dispatchUpdateSelectedCollegeId={dispatchUpdateSelectedCollegeId}
-            />
+                    <TableComponent
+                        type={type}
+                        data={data}
+                        scrollY={scrollY}
+                        dispatchUpdateSelectedCollegeId={dispatchUpdateSelectedCollegeId}
+                    />
+                </>
+            )}
         </section>
     );
 };

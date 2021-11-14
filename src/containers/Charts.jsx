@@ -26,21 +26,25 @@ const Charts = ({
 
         getData();
     }, []);
-    return loading ? <h1>Loading...</h1> : (
+    return (
         <section className="charts">
-            <div className="map">
-                <MapChart
-                    data={data.countryStats}
-                    setTooltipContent={setContent}
-                    dispatchUpdateTableDataType={dispatchUpdateTableDataType}
-                />
-                <ReactTooltip>{content}</ReactTooltip>
-            </div>
+            {loading ? <h1>Loading...</h1> : (
+                <>
+                    <div className="map">
+                        <MapChart
+                            data={data.countryStats}
+                            setTooltipContent={setContent}
+                            dispatchUpdateTableDataType={dispatchUpdateTableDataType}
+                        />
+                        <ReactTooltip>{content}</ReactTooltip>
+                    </div>
 
-            <DonutChart
-                data={data.courseStats}
-                dispatchUpdateTableDataType={dispatchUpdateTableDataType}
-            />
+                    <DonutChart
+                        data={data.courseStats}
+                        dispatchUpdateTableDataType={dispatchUpdateTableDataType}
+                    />
+                </>
+            )}
         </section>
     );
 };

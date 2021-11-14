@@ -12,29 +12,66 @@ const Table = ({
     let columns;
     let dataSource;
     if (type === 'colleges') {
+        const mobileColumn = {
+            title: 'College',
+            responsive: ['xs'],
+            render: (record) => {
+                const {
+                    id, name, country, yearFounded,
+                } = record;
+
+                return (
+                    <div className="mobile-row">
+                        <p>
+                            ID:
+                            {' '}
+                            <span>{id}</span>
+                        </p>
+                        <p>
+                            Name:
+                            {' '}
+                            <span>{name}</span>
+                        </p>
+                        <p>
+                            Country:
+                            {' '}
+                            <span>{country}</span>
+                        </p>
+                        <p>
+                            Year Founded:
+                            {' '}
+                            <span>{yearFounded}</span>
+                        </p>
+                    </div>
+                );
+            },
+        };
+
         columns = [
             {
-                title: 'ID', dataIndex: 'id', key: 'id', width: 150,
+                title: 'ID', dataIndex: 'id', key: 'id', width: 70, responsive: ['sm'],
             },
             {
-                title: 'Name', dataIndex: 'name', key: 'name', width: 350,
+                title: 'Name', dataIndex: 'name', key: 'name', width: 350, responsive: ['sm'],
             },
             {
-                title: 'Country', dataIndex: 'country', key: 'country', width: 250,
+                title: 'Country', dataIndex: 'country', key: 'country', width: 200, responsive: ['sm'],
             },
             {
-                title: 'Year Founded', dataIndex: 'yearFounded', key: 'yearFounded', width: 150,
+                title: 'Year Founded', dataIndex: 'yearFounded', key: 'yearFounded', width: 100, responsive: ['sm'],
             },
+            mobileColumn,
         ];
 
         if (isCollegeDetails) { // if rendered in college details page, only show two columns
             columns = [
                 {
-                    title: 'ID', dataIndex: 'id', key: 'id', width: 100,
+                    title: 'ID', dataIndex: 'id', key: 'id', width: 100, responsive: ['sm'],
                 },
                 {
-                    title: 'Name', dataIndex: 'name', key: 'name',
+                    title: 'Name', dataIndex: 'name', key: 'name', responsive: ['sm'],
                 },
+                mobileColumn,
             ];
         }
 
