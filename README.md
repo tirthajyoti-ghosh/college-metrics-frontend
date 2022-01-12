@@ -17,7 +17,9 @@
   <h3 align="center">College Metrics</h3>
 
   <p align="center">
-    College metrics dashboard. Check backend here: https://github.com/tirthajyoti-ghosh/college-metrics-backend.
+    College metrics dashboard.
+    <br />
+    Check backend here: https://github.com/tirthajyoti-ghosh/college-metrics-backend.
     <br />
     <a href="https://github.com/tirthajyoti-ghosh/college-metrics-frontend"><strong>Explore the docs »</strong></a>
     <br />
