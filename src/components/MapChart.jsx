@@ -8,7 +8,7 @@ import {
     Geography,
 } from 'react-simple-maps';
 
-const geoUrl = 'https://raw.githubusercontent.com/zcreativelabs/react-simple-maps/master/topojson-maps/world-110m.json';
+const geoUrl = 'https://unpkg.com/world-atlas@2.0.2/countries-110m.json';
 
 const MapChart = ({ setTooltipContent, data, dispatchUpdateTableDataType }) => {
     const [position, setPosition] = useState({ coordinates: [0, 0], zoom: 1 });
@@ -36,7 +36,7 @@ const MapChart = ({ setTooltipContent, data, dispatchUpdateTableDataType }) => {
                 >
                     <Geographies geography={geoUrl}>
                         {({ geographies }) => geographies.map((geo) => {
-                            const d = data.find((s) => s.country === geo.properties.NAME);
+                            const d = data.find((s) => s.country === geo.properties.name);
                             return (
                                 <Geography
                                     key={geo.rsmKey}
@@ -59,7 +59,7 @@ const MapChart = ({ setTooltipContent, data, dispatchUpdateTableDataType }) => {
                                             const { country, count } = d;
                                             setTooltipContent(`${country} — ${count}`);
                                         } else {
-                                            setTooltipContent(`${geo.properties.NAME} — 0`);
+                                            setTooltipContent(`${geo.properties.name} — 0`);
                                         }
                                     }}
                                     onMouseLeave={() => {
